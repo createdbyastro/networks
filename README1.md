@@ -71,14 +71,62 @@ exit<br>
 
 ## Switchport confuguration 
 
-This trunk port will carry multiple vlan between switches<br>
-i configured this between all switches<br>
+This trunk port will carry multiple vlan between switches, i configured this between all switch to switch<br>
 <br>
 
 interface fa0/port <br>
- switchport mode trunk<br>
- switchport trunk allowed vlan 10,20,30,40,50 <br>
+switchport mode trunk<br>
+switchport trunk allowed vlan 10,20,30,40,50 <br>
+<br>
 
+The Access port will transport a single, this was configured between PC and a switch.
+It was also configured between the server and the core switch.<br>
+<br>
+
+interface fa0/port<br>
+switchport mode access<br>
+Switchport access vlan ( vlan the pc and switch are in or server )<br>
+exit <br>
+
+## screenshot of trunk port brief from core switch
+<img width="1282" height="836" alt="image" src="https://github.com/user-attachments/assets/d4189809-fcdc-4af1-9764-e483cd0f460f" />
+
+## Configuration of the router 
+on my router i configured sub interfaces <br>
+enable<br>
+conf t<br>
+int g0/0.10<br>
+encapsulation dot1Q 10<br>
+ip address 192.168.10.1 255.255.255.0<br>
+ipv6 address 2001:10::1/64 <br>
+exit<br>
+
+int g0/0.20 <br>
+encapsulation dot1Q 20 <br>
+ip address 192.168.20.1 255.255.255.0<br>
+ipv6 address 2001:20::1/64<br>
+exit<br>
+
+int g0/0.30<br>
+encapsulation dot1Q 30<br>
+ip address 192.168.30.1 255.255.255.0<br>
+ipv6 address 2001:30::1/64<br>
+exit<br>
+
+int g0/0.40<br>
+encapsulation dot1Q 40<br>
+ip address 192.168.40.1 255.255.255.0<br>
+ipv6 address 2001:40::1/64<br>
+exit<br>
+
+int g0/0.50<br>
+encapsulation dot1Q 50<br>
+ip address 192.168.50.1 255.255.255.0<br>
+ipv6 address 2001:50::1/64<br>
+exit <br>
+
+Those commands turn one router port into multiple virtual ports, each one belonging to a different department (VLAN), allowing them to send messages and communicate through a single cable.
+## screen shot of IP interface brief : <img width="918" height="888" alt="image" src="https://github.com/user-attachments/assets/5008ae86-fe18-484c-b7f8-4d71563b6eeb" />
 
 
 
