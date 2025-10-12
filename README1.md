@@ -32,6 +32,7 @@
 <img width="1680" height="835" alt="image" src="https://github.com/user-attachments/assets/15c5bee8-6ed4-4268-bbe5-e2e564bb5c85" />
 
 
+## Part 1 : Hybrid topology  intergrating the 5 topologies , configured with IPv4 and IPv6 , VLAN Segmentation , one server(DNS/HTTP/DHCP) And basic security.
 
 
 
