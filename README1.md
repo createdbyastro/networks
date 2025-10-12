@@ -34,6 +34,51 @@
 
 ## Part 1 : Hybrid topology  intergrating the 5 topologies , configured with IPv4 and IPv6 , VLAN Segmentation , one server(DNS/HTTP/DHCP) And basic security.
 
+## FiGURE : Hybrid topology.
+<img width="1697" height="673" alt="image" src="https://github.com/user-attachments/assets/62b16395-5665-4f91-ae9e-3408c803b632" />
+
+
+
+| VLAN | IPv4 ADDRESS | IPv4 DEFAULT Gateway | IPv6 ADDRESS |  IPV6 DEFAULT GATEWAY|
+|------|--------------|----------------------|--------------|----------------------|
+  |VLAN 10| 192.168.10.0/24|192.168.10.1| 2001:10::/64 | 2001:10::1/64|
+  |VLAN 20| 192.168.20.0/24 | 192.168.20.1 | 2001:20::/64 |2001:20::1/64|
+  |VLAN 30 |192.168.30.0/24 | 102.168.30.1 | 2001:30::/64| 2001:30::1/54|
+  |VLAN 40 | 192.168.40.0/24| 192.168.40.1 | 2001:40::/64| 2001:40:1/64|
+  |VLAN 50 | 192.168.50.0/24 | 192.168.50.1 | 2001:50::64/64|2001:50::1/64|
+  | SERVER | 192.168.30.10| 192.168.30.1|2001:30::10/64 | 2001:30::1/64 |
+
+  ## CONFUGURATION NOTES 
+
+  
+  On core switch : 3560 24ps Multilayer switch creeate vlans
+  
+enable<br>
+configure terminal<br>
+vlan 10<br>
+name RING<br>
+vlan 20<br>
+name BUS<br>
+vlan 30<br>
+name central<br>
+vlan 40<br>
+name MESH<br>
+vlan 50<br>
+name EXT_STAR<br>
+exit<br>
+
+## SCREENSHOT OF VLAN BRIEF : <img width="1154" height="848" alt="image" src="https://github.com/user-attachments/assets/ab463fe5-05d1-49ec-bf76-f7d10425452d" />
+
+## Switchport confuguration 
+
+This trunk port will carry multiple vlan between switches<br>
+i configured this between all switches<br>
+<br>
+
+interface fa0/port <br>
+ switchport mode trunk<br>
+ switchport trunk allowed vlan 10,20,30,40,50 <br>
+
 
 
 
