@@ -4,13 +4,13 @@
   ## 5 TOPOLOGIES
 
   
-NAME OF TOPOLOGY | IP ADDRESS FOR ALL PCS
-+.......................................
-* Star        | 192.168.12.0/24
-BUS           | 192.168.10.0/24
-Mesh          | 192.168.1.0/24
-EXT_STAR      | 192.168.50.0/24
-RING          | 192.168.20.0/24
+|NAME OF TOPOLOGY | IP ADDRESS FOR ALL PCS|
+|==============|===================|
+| Star         | 192.168.12.0/24|
+|BUS           | 192.168.10.0/24|
+|Mesh          | 192.168.1.0/24|
+|EXT_STAR      | 192.168.50.0/24|
+|RING          | 192.168.20.0/24|
 
 ## Screenshots of Succesfull messaging withing topologies
 
