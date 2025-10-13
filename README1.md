@@ -246,19 +246,67 @@ There is vlan segmentation between all topologies within the hybrid except for v
 <br>
 <img width="1358" height="482" alt="image" src="https://github.com/user-attachments/assets/ebe36ef8-84f4-4ad1-a143-476fea8bc280" />
 
-##BLUE HIGHLIGHTED : PPP on WAN is configured 
-ON my PPP i have 2 routers connected to vlan 40 and 50.
+## BLUE HIGHLIGHTED : PPP on WAN is configured <br>
+
+ON my PPP i have 2 routers connected to vlan 40 and 50.<br>
 1. Asignend IP addresses to routers .
    |ROUTER 1|ROUTER 2 |
    |--------|---------|
    |10.10.10.1|10.10.10.2|
-2. ## I Concfgured OSPf
+2. ## I Configured OSPf
    
    confuguration notes<BR>
+   
+   On Router 1<br>
    
    ENABLE<BR>
    COMFIGURE TERMIINAL<BR>
    ROUTER OSPF 1<BR>
    ROUTER ID 1.1.1.1 <BR>
-   
+   network 192.168.20.0 0.0.0.255 area 0<br>
+   network 10.10.10.0 0.0.0.3 area 0<br>
 
+   On Router 2<br>
+   ROUTER OSPF 1<BR>
+   ROUTER-ID 1.1.2.2<BR>
+   network 192.168.10.0 0.0.0.255 area 0<br>
+   network 10.10.10.0 0.0.0.3 area 0<br>
+   EXIT<br>
+   <br>
+   ## Screenshot of ROUTER 1 showing IP OSPF OF NEIGHBOR being ROUTER 2 also the IP ROUTE<br>
+   <img width="842" height="767" alt="image" src="https://github.com/user-attachments/assets/331bf193-6cba-411e-b20c-3df580fc452d" />
+
+   <
+   <br>
+   ## screenshot of Router 2 shoowing ip Ospf of Neighbor being Router 1 also the ip route <br>
+   
+   <img width="837" height="780" alt="image" src="https://github.com/user-attachments/assets/020fbf6b-56d4-456b-b846-f6f04c73404a" />
+
+
+    ## For PPP to occur there has to authentication between the routers
+   ## Cofiguration notes
+
+ ROUTER 1 CONFIGURATION <br>
+ Router1(config)# hostname Router1 <br>
+Router1(config)# username Router2 password kea <br>
+Router1(config)# interface serial0/3/0 <br>
+Router1(config-if)# encapsulation ppp <br>
+Router1(config-if)# ppp authentication chap <br>
+Router1(config-if)# no shutdown <br>
+Router1(config-if)# exit <br>
+
+ROUTER 2 <br>
+Router2(config)# hostname Router2<br>
+Router2(config)# username Router1 password cisco<br>
+Router2(config)# interface serial0/3/0<br>
+Router2(config-if)# encapsulation ppp<br>
+Router2(config-if)# ppp authentication chap<br>
+Router2(config-if)# no shutdown<br>
+Router2(config-if)# exit<br>
+.
+## SucceSful ping from ROUTER 1 TO ROUTER 2. ALSO FROM ROUTER 2 TO ROUTER 1.<br>
+<img width="1729" height="794" alt="image" src="https://github.com/user-attachments/assets/61efb395-e5c2-4990-b1cb-686d5e7b3627" />
+
+## SUCCESFUL PING FROM PC IN VLAN 50 to vlan 40 :
+
+<img width="1327" height="808" alt="image" src="https://github.com/user-attachments/assets/42b87a8c-78a6-484d-8485-9ff584aba3e8" />
