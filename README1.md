@@ -127,7 +127,19 @@ exit <br>
 
 Those commands turn one router port into multiple virtual ports, each one belonging to a different department (VLAN), allowing them to send messages and communicate through a single cable.
 ## screen shot of IP interface brief : <img width="918" height="888" alt="image" src="https://github.com/user-attachments/assets/5008ae86-fe18-484c-b7f8-4d71563b6eeb" />
+## FOR inter vlan communicaton between vlan 10 and 20 i used helpwer addresses on the router 
+configuration notes <br>
+interface g0/0.10<br>
+ encapsulation dot1Q 10<br>
+ ip address 192.168.10.1 255.255.255.0<br>
+ ipv6 address 2001:10::1/64<br>
+ ip helper-address 192.168.30.2   <-- Server IP<br>
 
+interface g0/0.20<br>
+ encapsulation dot1Q 20<br>
+ ip address 192.168.20.1 255.255.255.0<br>
+ ipv6 address 2001:20::1/64<br>
+ ip helper-address 192.168.30.2<br>
 
 
 
