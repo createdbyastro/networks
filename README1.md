@@ -78,7 +78,21 @@ interface fa0/port <br>
 switchport mode trunk<br>
 switchport trunk allowed vlan 10,20,30,40,50 <br>
 <br>
-
+## For each switch connected to my core switch in every vlan these are my configurations .
+  for switch in vlan 10:<br>
+enable<br>
+configure terminal<br>
+vlan 10<br>
+name RING<br>
+exit<br>
+interface gigabitEthernet0/1<br>
+ switchport trunk encapsulation dot1q<br>
+ switchport mode trunk<br>
+ switchport trunk allowed vlan 10,20,30,40,50<br>
+ no shutdown<br>
+exit<br>
+Then i followed method  for all switches connected to the core switch in every vlan.
+  
 The Access port will transport a single, this was configured between PC and a switch.
 It was also configured between the server and the core switch.<br>
 <br>
@@ -127,8 +141,8 @@ exit <br>
 
 Those commands turn one router port into multiple virtual ports, each one belonging to a different department (VLAN), allowing them to send messages and communicate through a single cable.
 ## screen shot of IP interface brief : <img width="918" height="888" alt="image" src="https://github.com/user-attachments/assets/5008ae86-fe18-484c-b7f8-4d71563b6eeb" />
-## FOR inter vlan communicaton between vlan 10 and 20 i used helpwer addresses on the router 
-configuration notes <br>
+## For inter vlan communicaton between vlan 10 and 20, i configured the router with helper addresses.<br> 
+## configuration notes <br>
 interface g0/0.10<br>
  encapsulation dot1Q 10<br>
  ip address 192.168.10.1 255.255.255.0<br>
@@ -140,6 +154,63 @@ interface g0/0.20<br>
  ip address 192.168.20.1 255.255.255.0<br>
  ipv6 address 2001:20::1/64<br>
  ip helper-address 192.168.30.2<br>
+ ip helper-address 192.168.30.10 forwards DHCP requests from each VLAN to your server.<br>
+ When a pc sends DHCP request, it can not cross vlans or routers. so i used IP -helper addresses to fix this . because  the outer blocks the rquests from pcs to reach other vlans.<br>
+                                                                                                                                                                                   
+  ## Server setup
+  
+ ## IPv4 settings <br>
+iP Address: 192.168.30.10<br>
+Subnet Mask: 255.255.255.0<br>
+Default Gateway: 192.168.30.1 <br> 
+## IPv6 setrings<br>
+IPv6 Address: 2001:30::10/64<br>
+Default Gateway: 2001:30::1<br>
+
+## DHCP CONFIGURATION 
+|Pool Name|	Default Gateway|	DNS Server|	Start IP|	Subnet Mask|
+|--------|-----------------|-----------|---------|-------------|
+|VLAN10	|192.168.10.1	|192.168.30.10	|192.168.10.10		|255.255.255.0|
+|VLAN20	|192.168.20.1	|192.168.30.10	|192.168.20.10		|255.255.255.0|
+|VLAN30	|192.168.30.1	|192.168.30.10	|192.168.30.10		|255.255.255.0|
+|VLAN40	|192.168.40.1	|192.168.30.10	|192.168.40.10		|255.255.255.0|
+|VLAN50	|192.168.50.1	|192.168.30.10	|192.168.50.10	|	255.255.255.0|
+
+## DNS CONFIGURATION 
+|Name| Type |Address|
+|----|------|-------|
+|www.hybrid.local| A|192.168.30.10|
+|central.hybrid.local|A|192.168.30.10|
+|server.hybrid.local|A|192.168.30.10|
+<br>
+what this means An A record maps a domain name → an IP address (IPv4).
+So when a PC types a name like www.hybrid.local, the DNS server says:
+That name belongs to IP 192.168.30.10.
+## screenshot from pc 10 pinging:<br> <br>
+<img width="907" height="451" alt="image" src="https://github.com/user-attachments/assets/9984df45-76dc-4ac9-9def-20d0a4c170c6" />
+
+ 
+
+## HTTP Configuration
+TURNED ON HTTP AND HTTPS ON THE SERVER. <br>
+from pc in vlan 10 on the web browser screenshot:<br>
+<img width="995" height="699" alt="image" src="https://github.com/user-attachments/assets/537c4aea-82e2-42fb-b7d3-3ab5edf22bba" />
+
+## BASIC SECURITY 
+
+Shutdown all non working ports on core switch<br>
+configuration notes for this<br>
+<br>
+interface range fa0/16 - 24<br>
+shutdown<br>
+this prevents unwanted devices form connecting into unsued ports.
+
+## PASSWORD INCRYPTION 
+enable<br>
+configure terminal<br>
+service password-encryption<br>
+If anyone runs show running-config, they can’t read any passwords in clear text.
+
 
 
 
