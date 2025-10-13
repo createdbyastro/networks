@@ -245,4 +245,20 @@ There is vlan segmentation between all topologies within the hybrid except for v
 ## PART 2 : POInt TO POINT ON WAN LINKS 
 <br>
 <img width="1358" height="482" alt="image" src="https://github.com/user-attachments/assets/ebe36ef8-84f4-4ad1-a143-476fea8bc280" />
-BLUE HIGHLIGHTED : PPP on WAN is configured 
+
+##BLUE HIGHLIGHTED : PPP on WAN is configured 
+ON my PPP i have 2 routers connected to vlan 40 and 50.
+1. Asignend IP addresses to routers .
+   |ROUTER 1|ROUTER 2 |
+   |--------|---------|
+   |10.10.10.1|10.10.10.2|
+2. ## I Concfgured OSPf
+   
+   confuguration notes<BR>
+   
+   ENABLE<BR>
+   COMFIGURE TERMIINAL<BR>
+   ROUTER OSPF 1<BR>
+   ROUTER ID 1.1.1.1 <BR>
+   
+
