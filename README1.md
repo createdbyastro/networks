@@ -211,8 +211,38 @@ configure terminal<br>
 service password-encryption<br>
 If anyone runs show running-config, they can’t read any passwords in clear text.
 
+## SUCCESFUL MESSAGING WITHING VLANS AND PINGS <br>
 
+## vlan 10<br>
+<img width="1030" height="959" alt="image" src="https://github.com/user-attachments/assets/8efaf52f-e9ba-465a-9454-7c626a8b5982" />
+<br>
+## vlan 20<br>
 
+<img width="956" height="866" alt="image" src="https://github.com/user-attachments/assets/0c093050-e522-4ee0-834b-710932e0c6c0" />
+<br>
 
-                
-                
+## vlan 30<br>
+<br>
+<img width="951" height="830" alt="image" src="https://github.com/user-attachments/assets/8872629e-f404-4e4a-a204-079104d9651a" />
+<br>
+
+## vlan 40<br>
+<br>
+<img width="899" height="980" alt="image" src="https://github.com/user-attachments/assets/ec3a11e8-a967-47ac-8fa4-ac0cb5345d93" />
+<br>
+
+## vlan 50<br>
+<br>
+<img width="915" height="999" alt="image" src="https://github.com/user-attachments/assets/244134be-2c63-4268-9b8f-4c786aed36df" />
+
+## Inter vlan communication between VLAN 10 and VLAN 20 and successfull pings<br>
+<br>
+<img width="887" height="976" alt="image" src="https://github.com/user-attachments/assets/554584ba-b086-421b-bd1e-f5ba2357a5d0" />
+
+There is vlan segmentation between all topologies within the hybrid except for vlan 10 and 20 where there is inter vlan communication .
+<br>
+
+## PART 2 : POInt TO POINT ON WAN LINKS 
+<br>
+<img width="1358" height="482" alt="image" src="https://github.com/user-attachments/assets/ebe36ef8-84f4-4ad1-a143-476fea8bc280" />
+BLUE HIGHLIGHTED : PPP on WAN is configured 
